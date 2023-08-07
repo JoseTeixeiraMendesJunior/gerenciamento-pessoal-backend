@@ -23,12 +23,6 @@ Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::group(['prefix' => 'task'], function () {
-        Route::get('', [TaskController::class, 'index'])->name('task.index');
-        Route::post('', [TaskController::class, 'store'])->name('task.store');
-        Route::get('{task}', [TaskController::class, 'show'])->name('task.show');
-        Route::put('{task}', [TaskController::class, 'update'])->name('task.update');
-        Route::delete('{task}', [TaskController::class, 'destroy'])->name('task.destroy');
-    });
+    Route::apiResource('tasks', TaskController::class)->except(['get']);
 
 });

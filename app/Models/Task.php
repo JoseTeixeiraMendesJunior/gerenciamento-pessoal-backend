@@ -20,12 +20,12 @@ class Task extends Model
         'type',
     ];
 
-    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    public function subTasks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function subTasks()
     {
         return $this->hasMany(SubTask::class);
     }

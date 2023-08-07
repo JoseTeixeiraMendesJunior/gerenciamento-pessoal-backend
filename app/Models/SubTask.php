@@ -17,7 +17,7 @@ class SubTask extends Model
         'task_id',
     ];
 
-    public function task(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function task()
     {
         return $this->belongsTo(Task::class);
     }
