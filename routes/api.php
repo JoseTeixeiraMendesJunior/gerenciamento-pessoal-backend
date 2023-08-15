@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Api\RecurringTransactionController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\TransactionCategoryController;
+use App\Http\Controllers\Api\ShoppingListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,5 +34,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('transactions', TransactionController::class);
 
     Route::apiResource('transaction-categories', TransactionCategoryController::class);
+
+	  Route::apiResource('shopping_lists', ShoppingListController::class);
 
 });

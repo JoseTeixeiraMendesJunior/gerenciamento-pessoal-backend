@@ -62,4 +62,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(TransactionCategory::class);
     }
+    public function shoppingList()
+    {
+      return $this->hasMany(ShoppingList::class);
+    }
+
 }
