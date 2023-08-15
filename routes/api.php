@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Api\ShoppingListController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
     Route::apiResource('tasks', TaskController::class)->except(['get']);
+
+	Route::apiResource('shopping_lists', ShoppingListController::class);
 
 });
