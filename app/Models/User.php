@@ -47,4 +47,19 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function recurringTransactions()
+    {
+        return $this->hasMany(RecurringTransaction::class);
+    }
+
+    public function transactionCategories()
+    {
+        return $this->hasMany(TransactionCategory::class);
+    }
 }

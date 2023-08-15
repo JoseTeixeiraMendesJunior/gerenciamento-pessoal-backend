@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Api\RecurringTransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +24,8 @@ Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::apiResource('tasks', TaskController::class)->except(['get']);
+    Route::apiResource('tasks', TaskController::class);
+
+    Route::apiResource('recurring-transactions', RecurringTransactionController::class);
 
 });
