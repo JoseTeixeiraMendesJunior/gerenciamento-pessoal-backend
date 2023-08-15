@@ -12,10 +12,10 @@ class ShoppingListController extends Controller
     public function index(Request $request)
     {
 		try {
-            $shoppingLists = $request->user()->shoppingLists;
+            $shoppingList = $request->user()->shoppingList;
 
             return response()->json([
-                'shoppingLists' => $shoppingLists,
+                'shoppingList' => $shoppingList,
             ]);
         } catch (\Exception $e) {
             return response()->json([
