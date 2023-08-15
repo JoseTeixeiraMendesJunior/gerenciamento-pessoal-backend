@@ -5,6 +5,9 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Api\RecurringTransactionController;
+use App\Http\Controllers\Api\TransactionController;
+use App\Http\Controllers\Api\TransactionCategoryController;
 use App\Http\Controllers\Api\ShoppingListController;
 
 /*
@@ -24,8 +27,14 @@ Route::post('register', [AuthController::class, 'register'])->name('register');
 Route::middleware('auth:sanctum')->group(function () {
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::apiResource('tasks', TaskController::class)->except(['get']);
+    Route::apiResource('tasks', TaskController::class);
 
-	Route::apiResource('shopping_lists', ShoppingListController::class);
+    Route::apiResource('recurring-transactions', RecurringTransactionController::class);
+
+    Route::apiResource('transactions', TransactionController::class);
+
+    Route::apiResource('transaction-categories', TransactionCategoryController::class);
+
+	  Route::apiResource('shopping_lists', ShoppingListController::class);
 
 });

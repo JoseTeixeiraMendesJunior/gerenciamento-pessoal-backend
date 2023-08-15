@@ -48,8 +48,23 @@ class User extends Authenticatable
         return $this->hasMany(Task::class);
     }
 
-	public function shoppingList()
-	{
-		return $this->hasMany(ShoppingList::class);
-	}
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function recurringTransactions()
+    {
+        return $this->hasMany(RecurringTransaction::class);
+    }
+
+    public function transactionCategories()
+    {
+        return $this->hasMany(TransactionCategory::class);
+    }
+    public function shoppingList()
+    {
+      return $this->hasMany(ShoppingList::class);
+    }
+
 }
