@@ -12,7 +12,11 @@ class ShoppingListController extends Controller
     public function index(Request $request)
     {
 		try {
-            $shoppingList = $request->user()->shoppingList;
+			$shoppingList = $request->user()->shoppingList()
+				->when(isset($request->search), function($query) use ($request) {
+					$query->where('name', $request->search);
+				})
+				->get();
 
             return response()->json([
                 'shoppingList' => $shoppingList,
