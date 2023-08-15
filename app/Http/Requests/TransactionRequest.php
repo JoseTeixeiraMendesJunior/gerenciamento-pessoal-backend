@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class RecurringTransactionRequest extends FormRequest
+class TransactionRequest extends FormRequest
 {
 
     /**
@@ -22,8 +22,6 @@ class RecurringTransactionRequest extends FormRequest
             'type' => 'required|string|in:expense,income',
             'date' => 'required|date',
             'transaction_category_id' => 'required|exists:transaction_categories,id',
-            'frequency' => 'required|string|in:daily,weekly,monthly',
-            'active' => 'required|boolean',
         ];
     }
 
@@ -39,10 +37,6 @@ class RecurringTransactionRequest extends FormRequest
             'date.date' => 'O campo date deve ser uma data válida.',
             'transaction_category_id.required' => 'O campo transaction_category_id é obrigatório.',
             'transaction_category_id.exists' => 'O campo transaction_category_id deve ser um id válido.',
-            'frequency.required' => 'O campo frequency é obrigatório.',
-            'frequency.in' => 'O campo frequency deve ser um dos valores: daily, weekly, monthly.',
-            'active.required' => 'O campo active é obrigatório.',
-            'active.boolean' => 'O campo active deve ser um booleano.',
         ];
     }
 

@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\TaskController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Api\RecurringTransactionController;
+use App\Http\Controllers\Api\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,5 +28,7 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::apiResource('tasks', TaskController::class);
 
     Route::apiResource('recurring-transactions', RecurringTransactionController::class);
+
+    Route::apiResource('transactions', TransactionController::class);
 
 });
