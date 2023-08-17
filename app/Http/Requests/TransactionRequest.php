@@ -21,7 +21,7 @@ class TransactionRequest extends FormRequest
             'amount' => 'required|numeric',
             'type' => 'required|string|in:expense,income',
             'date' => 'required|date',
-            'transaction_category_id' => 'required|exists:transaction_categories,id',
+            'category' => 'required|string|max:255',
         ];
     }
 
@@ -35,8 +35,8 @@ class TransactionRequest extends FormRequest
             'type.in' => 'O campo type deve ser um dos valores: expense, income.',
             'date.required' => 'O campo date é obrigatório.',
             'date.date' => 'O campo date deve ser uma data válida.',
-            'transaction_category_id.required' => 'O campo transaction_category_id é obrigatório.',
-            'transaction_category_id.exists' => 'O campo transaction_category_id deve ser um id válido.',
+            'category.required' => 'O campo category é obrigatório.',
+            'category.string' => 'O campo category deve ser uma string.',
         ];
     }
 

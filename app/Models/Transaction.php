@@ -14,14 +14,9 @@ class Transaction extends Model
         'amount',
         'type',
         'date',
-        'transaction_category_id',
+        'category',
         'user_id',
     ];
-
-    public function category()
-    {
-        return $this->belongsTo(TransactionCategory::class);
-    }
 
     public function user()
     {

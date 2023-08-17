@@ -42,9 +42,7 @@ class TransactionController extends Controller
                 'amount',
                 'type',
                 'date',
-                'frequency',
-                'active',
-                'transaction_category_id',
+                'category',
             ]);
             $transaction = auth()->user()->transactions()->create($data);
 
@@ -87,9 +85,7 @@ class TransactionController extends Controller
                 'amount',
                 'type',
                 'date',
-                'frequency',
-                'active',
-                'transaction_category_id',
+                'category',
             ]);
 
             $transaction->update($data);

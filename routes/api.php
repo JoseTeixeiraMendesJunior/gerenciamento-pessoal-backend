@@ -35,6 +35,6 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('transaction-categories', TransactionCategoryController::class);
 
-	  Route::apiResource('shopping_lists', ShoppingListController::class);
+    Route::apiResource('shopping_lists', ShoppingListController::class);
 
 });
