@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\TaskRequest;
+use App\Http\Resources\TaskResource;
 use App\Models\Task;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
@@ -14,9 +16,7 @@ class TaskController extends Controller
         try {
             $tasks = $request->user()->tasks;
 
-            return response()->json([
-                'tasks' => $tasks,
-            ]);
+            return TaskResource::collection($tasks);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage(),
@@ -28,19 +28,18 @@ class TaskController extends Controller
     {
         try {
 
-            $data = $request->only([
-                'name',
-                'description',
-                'due_date',
-                'priority',
-                'status',
-                'type',
-            ]);
+            $data = [
+                'name' => $request->name,
+                'description' => $request->description,
+                'due_date' => Carbon::parse($request->due_date)->format('Y-m-d'),
+                'priority' => $request->priority,
+                'status' => $request->status ?? 'todo',
+                'type' => $request->type,
+            ];
+
             $task = $request->user()->tasks()->create($data);
 
-            return response()->json([
-                'task' => $task,
-            ]);
+            return TaskResource::make($task);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage(),
@@ -51,9 +50,7 @@ class TaskController extends Controller
     public function show(Request $request, Task $task)
     {
         try {
-            return response()->json([
-                'task' => $task,
-            ]);
+            return TaskResource::make($task);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage(),
@@ -66,9 +63,7 @@ class TaskController extends Controller
         try {
             $task->update($request->all());
 
-            return response()->json([
-                'task' => $task,
-            ]);
+            return TaskResource::make($task);
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage(),
