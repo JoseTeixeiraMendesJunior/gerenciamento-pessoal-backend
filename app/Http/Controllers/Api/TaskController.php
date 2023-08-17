@@ -14,7 +14,12 @@ class TaskController extends Controller
     public function index(Request $request)
     {
         try {
-            $tasks = $request->user()->tasks;
+            $tasks = $request->user()->tasks()
+                ->when(isset($request->search), function ($query) use ($request) {
+                    $date = Carbon::parse($request->search)->format('Y-m-d');
+                    $query->where('due_date', $date);
+                })
+                ->get();
 
             return TaskResource::collection($tasks);
         } catch (\Exception $e) {
