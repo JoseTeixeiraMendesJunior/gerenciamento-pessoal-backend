@@ -18,7 +18,7 @@ class TransactionResource extends JsonResource
         return [
             'id' => $this->id,
             'description' => $this->description,
-            'amount' => $this->amount,
+            'amount' => round(floatval($this->amount), 2),
             'type' => $this->type,
             'date' => Carbon::parse($this->date)->format('d-m-Y'),
             'category' => $this->category,

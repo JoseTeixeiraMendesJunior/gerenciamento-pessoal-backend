@@ -33,6 +33,8 @@ Route::middleware('auth:sanctum')->group(function () {
 
     Route::apiResource('transactions', TransactionController::class);
 
+    Route::get('wallet', [TransactionController::class, 'wallet'])->name('wallet');
+
     Route::apiResource('transaction-categories', TransactionCategoryController::class);
 
     Route::apiResource('shopping_lists', ShoppingListController::class);

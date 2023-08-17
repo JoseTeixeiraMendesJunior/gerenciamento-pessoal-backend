@@ -22,4 +22,14 @@ class Transaction extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public static function wallet($month, $year, $user_id)
+    {
+        return Transaction::query()
+            ->whereMonth('date', $month)
+            ->whereYear('date', $year)
+            ->where('user_id', $user_id)
+            ->groupBy('type')
+            ->selectRaw('type, sum(amount) as total')
+            ->toSql();
+    }
 }
