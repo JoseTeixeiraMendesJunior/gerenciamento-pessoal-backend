@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Exception;
 use App\Http\Resources\TransactionResource;
@@ -37,13 +38,13 @@ class TransactionController extends Controller
     {
         try {
 
-            $data = $request->only([
-                'description',
-                'amount',
-                'type',
-                'date',
-                'category',
-            ]);
+            $data = [
+                "description" => $request->description,
+                "amount" => $request->amount,
+                "type" => $request->type,
+                "date" => Carbon::parse($request->date),
+                "category" => $request->category,
+            ];
             $transaction = auth()->user()->transactions()->create($data);
 
             return TransactionResource::make($transaction);
