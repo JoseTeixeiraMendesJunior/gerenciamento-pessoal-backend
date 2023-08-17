@@ -13,9 +13,14 @@ class ShoppingListController extends Controller
     public function index(Request $request)
     {
 		try {
-            $shoppingLists = $request->user()->shoppingList;
+            $shoppingList = $request->user()->shoppingList()
+				->when(isset($request->search), function($query) use ($request) {
+					$query->where('name', $request->search);
+				})
+				->get();
 
-            return ShoppingListResource::collection($shoppingLists);
+            return ShoppingListResource::collection($shoppingList);
+
         } catch (\Exception $e) {
             return response()->json([
                 'message' => $e->getMessage(),
